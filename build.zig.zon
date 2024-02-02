@@ -1,0 +1,20 @@
+.{
+    .name = "SDL_ttf",
+    .version = "2.20.0",
+    .dependencies = .{
+        .freetype = .{
+            .url = "https://github.com/hexops/freetype/archive/398638fd1cb723e478658ea371fe3be1a4dce0ae.tar.gz",
+            .hash = "12208c57b72e3fb5c8d5d3e667e2e21ca1d9e2b6fc3f84182b320f63933f591823da",
+        },
+        .sdl = .{
+            .url = "https://github.com/andrewrk/SDL/archive/db4a162db2f6f59f737d03f441455dc9524d5793.tar.gz",
+            .hash = "1220c5360c9c71c215baa41b46ec18d0711059b48416a2b1cf96c7c2d87b2e8e4cf6",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "SDL_ttf.c",
+        "SDL_ttf.h",
+    },
+}
