@@ -9,7 +9,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    lib.addCSourceFile(.{ .file = .{ .path = "SDL_ttf.c" } });
+    lib.addCSourceFile(.{ .file = b.path("SDL_ttf.c") });
     lib.linkLibC();
 
     const freetype_dep = b.dependency("freetype", .{
@@ -25,6 +25,6 @@ pub fn build(b: *std.Build) void {
     });
     lib.linkLibrary(sdl_dep.artifact("SDL2"));
 
-    lib.installHeader("SDL_ttf.h", "SDL2/SDL_ttf.h");
+    lib.installHeader(b.path("SDL_ttf.h"), "SDL2/SDL_ttf.h");
     b.installArtifact(lib);
 }
