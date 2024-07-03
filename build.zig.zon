@@ -3,12 +3,12 @@
     .version = "2.20.0",
     .dependencies = .{
         .freetype = .{
-            .url = "https://github.com/jayschwa/freetype/archive/012a865d210780dda1ea29eab43eb0bb5e4b197f.tar.gz",
-            .hash = "122045b7d7ead5ec0ff4d148381902dd03749356858f7defb0b00560136612fe73a0",
+            .url = "https://github.com/hexops/freetype/archive/e8c5b37f320db03acba410d993441815bc809606.tar.gz",
+            .hash = "1220babb7939707ca390b934657dfd3c8c3a6a78cc9442e4cbd43e3f9ffd49daec9e",
         },
         .sdl = .{
-            .url = "https://github.com/jayschwa/SDL/archive/d602eaed698da8075561eadf8500e2020132d35a.tar.gz",
-            .hash = "12201990ac338db78888369a5d67ba311f673971a1b7638830be661df9f137882c8e",
+            .url = "https://github.com/allyourcodebase/SDL/archive/b77d252f3f33e4dc1c24f03f5dd24e809f1cd0a3.tar.gz",
+            .hash = "1220db3c3040b03da7ace818c382a99196b58b539d035c4ab37585c9b7763b12b2ad",
         },
     },
     .paths = .{

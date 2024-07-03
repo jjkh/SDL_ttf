@@ -23,7 +23,10 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    lib.linkLibrary(sdl_dep.artifact("SDL2"));
+    const sdl = sdl_dep.artifact("SDL2");
+    lib.linkLibrary(sdl);
+    if (sdl.installed_headers_include_tree) |tree|
+        lib.addIncludePath(tree.getDirectory().path(b, "SDL2"));
 
     lib.installHeader(b.path("SDL_ttf.h"), "SDL2/SDL_ttf.h");
     b.installArtifact(lib);
