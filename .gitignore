@@ -19,5 +19,6 @@ SDL2_ttf.pc
 glfont
 showfont
 
+.zig-cache/
 zig-cache/
 zig-out/
