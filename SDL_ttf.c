@@ -19,9 +19,9 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_cpuinfo.h"
-#include "SDL2/SDL_endian.h"
+#include "SDL.h"
+#include "SDL_cpuinfo.h"
+#include "SDL_endian.h"
 
 #include "SDL_ttf.h"
 
