@@ -10,6 +10,11 @@
             .url = "https://github.com/allyourcodebase/SDL/archive/ccb56626ec75638457ed36d45a53683371d909c5.tar.gz",
             .hash = "122092989e6ddcdb5c876cb3b7518474e638dede0e557006e8f39d51bcb1833bc848",
         },
+        .harfbuzz = .{
+            .url = "https://github.com/hexops/harfbuzz/archive/cecd5c8d34d343c0ab8b4dc6d2b0e2c08da52936.tar.gz",
+            .hash = "1220557b115b730afbece2ff4a073b6dc095d143318ba2f6b258cee13f580dd7e8ba",
+            .lazy = true,
+        },
     },
     .paths = .{
         "build.zig",
