@@ -7,8 +7,8 @@
             .hash = "1220babb7939707ca390b934657dfd3c8c3a6a78cc9442e4cbd43e3f9ffd49daec9e",
         },
         .sdl = .{
-            .url = "https://github.com/allyourcodebase/SDL/archive/ccb56626ec75638457ed36d45a53683371d909c5.tar.gz",
-            .hash = "122092989e6ddcdb5c876cb3b7518474e638dede0e557006e8f39d51bcb1833bc848",
+            .url = "https://github.com/pwbh/SDL/archive/refs/tags/release-2.30.3.tar.gz",
+            .hash = "12203d06a751586e5cf3f8b61f9a0012c70ada050ce33b6bf79d4741902f9c344239",
         },
         .harfbuzz = .{
             .url = "https://github.com/hexops/harfbuzz/archive/cecd5c8d34d343c0ab8b4dc6d2b0e2c08da52936.tar.gz",
