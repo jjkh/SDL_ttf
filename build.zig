@@ -4,13 +4,23 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
     const use_harfbuzz = b.option(bool, "use_harfbuzz", "Use HarfBuzz") orelse true;
+    const disable_ubsan_traps = b.option(bool, "disable_ubsan_traps", "Disable UBSAN traps") orelse false;
 
     const lib = b.addStaticLibrary(.{
         .name = "SDL2_ttf",
         .target = target,
         .optimize = optimize,
     });
-    lib.addCSourceFile(.{ .file = b.path("SDL_ttf.c"), .flags = &.{if (use_harfbuzz) "-DTTF_USE_HARFBUZZ=1" else ""} });
+    lib.addCSourceFile(.{
+        .file = b.path("SDL_ttf.c"),
+        .flags = &.{
+            if (use_harfbuzz) "-DTTF_USE_HARFBUZZ=1" else "",
+            if ((optimize == .Debug or optimize == .ReleaseSafe) and disable_ubsan_traps)
+                "-fno-sanitize-trap=undefined"
+            else
+                "",
+        },
+    });
     lib.linkLibC();
 
     const freetype_dep = b.dependency("freetype", .{
