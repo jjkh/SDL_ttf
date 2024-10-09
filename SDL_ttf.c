@@ -1157,7 +1157,9 @@ int Render_Line_##NAME(TTF_Font *font, SDL_Surface *textbuf, int xstart, int yst
             int remainder;                                                                                              \
             Uint8 *saved_buffer = image->buffer;                                                                        \
             int saved_width = image->width;                                                                             \
-            image->buffer += alignment;                                                                                 \
+            if (saved_buffer) {                                                                                         \
+                image->buffer += alignment;                                                                             \
+            }                                                                                                           \
             /* Position updated after glyph rendering */                                                                \
             x = xstart + FT_FLOOR(x) + image->left;                                                                     \
             y = ystart + FT_FLOOR(y) - image->top;                                                                      \
@@ -1173,15 +1175,19 @@ int Render_Line_##NAME(TTF_Font *font, SDL_Surface *textbuf, int xstart, int yst
                 /* Align dst, get remainder, shift & align glyph width */                                               \
                 remainder = ((uintptr_t)dst & alignment) / bpp;                                                         \
                 dst  = (Uint8 *)((uintptr_t)dst & ~alignment);                                                          \
-                image->buffer -= remainder;                                                                             \
-                image->width   = (image->width + remainder + alignment) & ~alignment;                                   \
+                if (saved_buffer) {                                                                                     \
+                    image->buffer -= remainder;                                                                         \
+                }                                                                                                       \
+                image->width = (image->width + remainder + alignment) & ~alignment;                                     \
                 /* Compute srcskip, dstskip */                                                                          \
                 srcskip = image->pitch - image->width;                                                                  \
                 dstskip = textbuf->pitch - image->width * bpp;                                                          \
                 /* Render glyph at (x, y) with optimized copy functions */                                              \
                 if (IS_LCD) {                                                                                           \
-                    image->buffer = saved_buffer;                                                                       \
-                    image->buffer += alignment;                                                                         \
+                    if (saved_buffer) {                                                                                 \
+                        image->buffer = saved_buffer;                                                                   \
+                        image->buffer += alignment;                                                                     \
+                    }                                                                                                   \
                     image->width = saved_width;                                                                         \
                     dst = (Uint8 *)textbuf->pixels + y * textbuf->pitch + x * bpp;                                      \
                     /* Compute srcskip, dstskip */                                                                      \
@@ -1197,8 +1203,10 @@ int Render_Line_##NAME(TTF_Font *font, SDL_Surface *textbuf, int xstart, int yst
                         BLIT_GLYPH_OPTIM(image, dst, srcskip, dstskip);                                                 \
                     }                                                                                                   \
                 } else if (IS_BLENDED && image->is_color) {                                                             \
-                    image->buffer = saved_buffer;                                                                       \
-                    image->buffer += alignment;                                                                         \
+                    if (saved_buffer) {                                                                                 \
+                        image->buffer = saved_buffer;                                                                   \
+                        image->buffer += alignment;                                                                     \
+                    }                                                                                                   \
                     image->width = saved_width;                                                                         \
                     dst = (Uint8 *)textbuf->pixels + y * textbuf->pitch + x * bpp;                                      \
                     /* Compute srcskip, dstskip */                                                                      \
